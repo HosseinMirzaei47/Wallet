@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/viewEntries"
+            android:icon="@drawable/money"
+            android:title="View entries" />
+
+        <item
+            android:id="@+id/chart"
+            android:icon="@drawable/chart"
+            android:title="Chart" />
+
+    </group>
+
+    <item android:title="Other options">
+        <menu>
+
+            <item
+                android:id="@+id/clearData"
+                android:icon="@drawable/exit"
+                android:title="Clear all entries" />
+
+            <item
+                android:id="@+id/exit"
+                android:icon="@drawable/exit"
+                android:title="Exit" />
+        </menu>
+    </item>
+
+</menu>

@@ -7,9 +7,7 @@
 
     <color name="colorAccent">#4682B4</color>
 
-    <color name="blueSky">#4682B4</color>
-
-    <color name="lightSteelBlue">#B0C4DE</color>
+    <color name="blue">#4682B4</color>
 
     <color name="global">#E8E8E8</color>
 
@@ -27,11 +25,7 @@
 
     <color name="black">#000000</color>
 
-    <color name="darkBlue">#003366</color>
-
     <color name="darkRed">#800000</color>
-
-    <color name="lightBlue">#CDD8E6</color>
 
     <color name="silver">#C0C0C0</color>
 
@@ -50,8 +44,6 @@
     <color name="aqua">#00FFFF</color>
 
     <color name="teal">#008080</color>
-
-    <color name="blue">#0000FF</color>
 
     <color name="navy">#000080</color>
 

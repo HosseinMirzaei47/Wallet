@@ -3,6 +3,7 @@ package com.example.hossein.wallet;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import java.util.List;
 
 public class MonthFragment extends Fragment {
 
+    private static final String TAG = "jalil";
     private ArrayList<String> names = new ArrayList<>();
     private ArrayList<Integer> scores = new ArrayList<>();
 
@@ -31,6 +33,9 @@ public class MonthFragment extends Fragment {
 
         names = getArguments().getStringArrayList("names");
         scores = getArguments().getIntegerArrayList("scores");
+
+        Log.i(TAG, String.valueOf(names.size()));
+        Log.i(TAG, String.valueOf(scores.size()));
         return inflater.inflate(R.layout.fragment_month_expenses, container, false);
     }
 
