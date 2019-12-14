@@ -1,6 +1,5 @@
 package com.example.hossein.wallet;
 
-import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,12 +9,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toolbar;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -27,10 +27,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ArrayList<Integer> scores = new ArrayList<>();
 
     private android.support.v7.widget.Toolbar toolbar;
-    private EditText name;
-    private EditText score;
-    private Button add;
     private DrawerLayout drawerLayout;
+    private CardView cardToday;
+    private Button add;
 
     private MyDataBase myDataBase = new MyDataBase(this);
 
@@ -45,12 +44,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerButtonRotation();
 
         setOnClicks();
-
-    }
-
-    private void setOnClicks() {
-
-        addToList();
 
     }
 
@@ -72,6 +65,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.closeDrawer(GravityCompat.START);
 
         return true;
+
+    }
+
+    private void setOnClicks() {
+
+        addToList();
 
     }
 
@@ -122,15 +121,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         getDataFromDatabase();
 
-        MonthFragment monthFragment = new MonthFragment();
+        ChartFragment chartFragment = new ChartFragment();
 
         Bundle bundle = new Bundle();
         bundle.putStringArrayList("names", names);
         bundle.putIntegerArrayList("scores", scores);
-        monthFragment.setArguments(bundle);
+        chartFragment.setArguments(bundle);
 
         getFragmentManager().beginTransaction()
-                .add(R.id.fragmentContainer, monthFragment)
+                .add(R.id.fragmentContainer, chartFragment)
                 .addToBackStack(null)
                 .commit();
 
@@ -141,15 +140,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (name.getText().toString().trim().length() != 0 && score.getText().toString().trim().length() != 0) {
-                    myDataBase.addData(name.getText().toString(), Integer.parseInt(score.getText().toString()));
-                    /*names.add(name.getText().toString());
-                    scores.add(Integer.parseInt(score.getText().toString()));*/
-                }
-                name.setText("");
-                name.setHint("Name");
-                score.setText("");
-                score.setHint("Score");
+
+                SuggestionsFragment suggestionsFragment = new SuggestionsFragment();
+                getFragmentManager().beginTransaction()
+                        .add(R.id.fragmentContainer, suggestionsFragment)
+                        .addToBackStack(null)
+                        .commit();
+
             }
         });
 
@@ -186,10 +183,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void findViews() {
 
         add = (Button) findViewById(R.id.addButton);
-        name = (EditText) findViewById(R.id.name);
-        score = (EditText) findViewById(R.id.score);
         toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        cardToday = (CardView) findViewById(R.id.cardView);
 
     }
 

@@ -5,5 +5,9 @@
     <string name="OpenDrawer">Open navigation drawer</string>
     <string name="name">Name</string>
     <string name="score">Score</string>
+    <string name="addData">+</string>
+    <string name="addItem">Add item</string>
+    <string name="done">done</string>
+    <string name="finances">Finances</string>
 
 </resources>

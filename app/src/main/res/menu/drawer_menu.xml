@@ -7,7 +7,7 @@
 
         <item
             android:id="@+id/viewEntries"
-            android:icon="@drawable/money"
+            android:icon="@drawable/money_icon"
             android:title="View entries" />
 
         <item

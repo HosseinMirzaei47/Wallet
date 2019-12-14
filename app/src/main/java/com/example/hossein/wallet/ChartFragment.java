@@ -19,7 +19,7 @@ import com.anychart.enums.LegendLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MonthFragment extends Fragment {
+public class ChartFragment extends Fragment {
 
     private static final String TAG = "jalil";
     private ArrayList<String> names = new ArrayList<>();
