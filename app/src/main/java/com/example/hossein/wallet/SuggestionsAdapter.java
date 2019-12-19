@@ -8,15 +8,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SuggestionsAdapter extends RecyclerView.Adapter<SuggestionsAdapter.ViewHolder> {
 
-    private List<String> items;
+    private ArrayList<String> items = new ArrayList<>();
     private Context context;
+    private ItemClickListener listener;
 
-    public SuggestionsAdapter(List<String> items, Context context) {
+    public SuggestionsAdapter(ArrayList<String> items, Context context) {
         this.items = items;
         this.context = context;
     }
@@ -38,7 +41,7 @@ public class SuggestionsAdapter extends RecyclerView.Adapter<SuggestionsAdapter.
         return items.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView suggestion;
         public ImageView icon;
@@ -48,8 +51,27 @@ public class SuggestionsAdapter extends RecyclerView.Adapter<SuggestionsAdapter.
 
             suggestion = itemView.findViewById(R.id.suggestion);
             icon = itemView.findViewById(R.id.suggestion_icon);
+            itemView.setOnClickListener(this);
 
         }
+
+        @Override
+        public void onClick(View view) {
+            if (listener != null)
+                listener.onItemClick(view, getAdapterPosition());
+        }
+    }
+
+    String getItem(int id) {
+        return items.get(id);
+    }
+
+    void setClickListener(ItemClickListener itemClickListener) {
+        this.listener = itemClickListener;
+    }
+
+    public interface ItemClickListener {
+        void onItemClick(View view, int position);
     }
 
 }

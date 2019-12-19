@@ -6,8 +6,9 @@
     <string name="name">Name</string>
     <string name="score">Score</string>
     <string name="addData">+</string>
+    <string name="addEntry">Tap to add entry</string>
     <string name="addItem">Add item</string>
-    <string name="done">done</string>
+    <string name="done">Done</string>
     <string name="finances">Finances</string>
 
 </resources>

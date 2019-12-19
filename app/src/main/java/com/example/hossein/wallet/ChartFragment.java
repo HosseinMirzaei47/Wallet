@@ -13,6 +13,7 @@ import com.anychart.AnyChartView;
 import com.anychart.chart.common.dataentry.DataEntry;
 import com.anychart.chart.common.dataentry.ValueDataEntry;
 import com.anychart.charts.Pie;
+import com.anychart.core.ui.DataArea;
 import com.anychart.enums.Align;
 import com.anychart.enums.LegendLayout;
 
@@ -34,8 +35,8 @@ public class ChartFragment extends Fragment {
         names = getArguments().getStringArrayList("names");
         scores = getArguments().getIntegerArrayList("scores");
 
-        Log.i(TAG, String.valueOf(names.size()));
-        Log.i(TAG, String.valueOf(scores.size()));
+        /*Log.i(TAG, String.valueOf(names.size()));
+        Log.i(TAG, String.valueOf(scores.size()));*/
         return inflater.inflate(R.layout.fragment_month_expenses, container, false);
     }
 
@@ -53,7 +54,7 @@ public class ChartFragment extends Fragment {
         anyChartView.setProgressBar(view.findViewById(R.id.progress_bar));
 
         Pie pie = AnyChart.pie();
-        List<DataEntry> data = new ArrayList<>();
+        ArrayList<DataEntry> data = new ArrayList<>();
 
         if (names.size() == scores.size())
             for (int i = 0; i < names.size(); i++)

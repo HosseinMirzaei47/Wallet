@@ -1,26 +1,34 @@
 package com.example.hossein.wallet;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
-public class SuggestionsFragment extends Fragment {
+public class SuggestionsFragment extends Fragment implements SuggestionsAdapter.ItemClickListener {
 
     private RecyclerView suggestions;
     private SuggestionsAdapter adapter;
+    private MyDataBase dataBase = null;
 
     private Button done;
+    private Button addItem;
 
-    private ArrayList<String> items = new ArrayList<>();
+    private static final String TAG = "jalil";
+    private ArrayList<String> items = new SuggestionsList().getList();
 
     @Nullable
     @Override
@@ -45,9 +53,7 @@ public class SuggestionsFragment extends Fragment {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 getFragmentManager().popBackStack();
-                
             }
         });
 
@@ -55,26 +61,31 @@ public class SuggestionsFragment extends Fragment {
 
     private void initItemList() {
 
-        items.add("Food");
-        items.add("Groceries");
-        items.add("Clothes");
-        items.add("Internet");
-        items.add("Hanging out");
-        items.add("Rainy day");
-        items.add("Transportation");
-
         suggestions.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         adapter = new SuggestionsAdapter(items, getActivity());
+        adapter.setClickListener(this);
         suggestions.setAdapter(adapter);
 
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        String itemName = ((TextView) Objects.requireNonNull(suggestions.findViewHolderForAdapterPosition(position)).itemView.findViewById(R.id.suggestion)).getText().toString();
+        dataBase.addData(itemName, 10);
+        Log.i(TAG, itemName);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        dataBase = new MyDataBase(getActivity());
+        super.onAttach(context);
     }
 
     private void findViews(View view) {
 
         suggestions = view.findViewById(R.id.suggestions);
-
         done = view.findViewById(R.id.doneButton);
+        addItem = view.findViewById(R.id.addItem);
 
     }
-
 }

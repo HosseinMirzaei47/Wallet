@@ -108,6 +108,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             while (cursor.moveToNext()) {
                 names.add(cursor.getString(cursor.getColumnIndex("Name")));
                 scores.add(Integer.parseInt(cursor.getString(cursor.getColumnIndex("Score"))));
+                Log.i(TAG, "Data " + cursor.getString(cursor.getColumnIndex("Name")));
+                Log.i(TAG, "Data " + cursor.getString(cursor.getColumnIndex("Score")));
             }
 
         }

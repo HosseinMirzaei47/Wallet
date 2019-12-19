@@ -22,6 +22,7 @@ public class MyDataBase extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase database) {
 
+        Log.i(TAG, "onCreate: ");
         String CREATE_EXPENSES_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + NAME_COL + " TEXT, " + SCORE_COL + " INTEGER" + ")";
         database.execSQL(CREATE_EXPENSES_TABLE);
 
@@ -30,11 +31,14 @@ public class MyDataBase extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
 
+        Log.i(TAG, "onUpgrade: ");
+
         if (newVersion < oldVersion) {
 
             String drop = "DROP IF TABLE EXISTS ";
             database.execSQL(drop + TABLE_NAME);
             onCreate(database);
+            Log.i(TAG, "onUpgrade if");
 
         }
 
@@ -48,8 +52,17 @@ public class MyDataBase extends SQLiteOpenHelper {
         contentValues.put(NAME_COL, name);
         contentValues.put(SCORE_COL, score);
 
-        long result = database.insert(TABLE_NAME, null, contentValues);
+        Log.i(TAG, "Name:" + name + " Score: " + score);
 
+        /*long result = database.insert(TABLE_NAME, null, contentValues);
+
+        if (result == -1)
+            return false;
+        else
+            return true;*/
+
+        long result = database.insert(TABLE_NAME, null, contentValues);
+        Log.i(TAG, "result " + result);
         if (result == -1)
             return false;
         else
